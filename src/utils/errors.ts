@@ -15,8 +15,20 @@ function BadRequestError(message: string = 'bad request') {
     this.status = ErrorCodes.BAD_REQUEST
 }
 
+function NotFoundError(message: string = 'not found') {
+    this.message = message
+    this.status = ErrorCodes.NOT_FOUND
+}
+
+function UnauthorizedError(message: string = 'unauthorized') {
+    this.message = message
+    this.status = ErrorCodes.UNAUTHORIZED
+}
+
 export default {
     InternalError,
     ForbiddenError,
-    BadRequestError
+    BadRequestError,
+    NotFoundError,
+    UnauthorizedError
 }

@@ -10,7 +10,8 @@ const save = async (user: user) => {
         const salt = await bcrypt.genSalt(saltRounds)
         const hashed = await bcrypt.hash(user.password, salt)
         const u = User.build({
-            username: user.username, email: user.email, password: hashed, mobile: String(user.mobile)
+            username: user.username, email: user.email, password: hashed,
+            mobile: String(user.mobile), SSN: user.SSN
         })
         await u.save()
     } catch (e) {
@@ -18,6 +19,23 @@ const save = async (user: user) => {
     }
 }
 
+const findByEmail = async (email: string, password: string) => {
+    let user = {} as any
+    try {
+        user = await User.findOne({ where: { email } })
+        if (user === null)
+            throw new Errors.NotFoundError("user not found")
+
+        if (!await bcrypt.compare(password, user.password))
+            throw new Errors.UnauthorizedError("incorrect password")
+
+    } catch (e) {
+        const error = e.errors ? e.errors[0].message : e.message
+        throw new Errors.InternalError(error || errorMsgs.database_error())
+    }
+    return user as user
+}
 export default {
-    save
+    save,
+    findByEmail
 }

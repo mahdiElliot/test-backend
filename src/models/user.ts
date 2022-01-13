@@ -9,6 +9,7 @@ export type user = {
     password: string
     email: string
     mobile: string
+    SSN: string
 }
 
 const User = sequelize.define('user', {
@@ -40,7 +41,11 @@ const User = sequelize.define('user', {
     },
     mobile: {
         type: DataTypes.STRING,
-        validate: {len: [11, 11]},
+        validate: { len: [11, 11] },
+        allowNull: false,
+    },
+    SSN: {
+        type: DataTypes.STRING,
         allowNull: false,
     }
 }, {
