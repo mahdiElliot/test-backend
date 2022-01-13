@@ -5,7 +5,7 @@ dotenv.config()
 import sequelize from './db/index'
 
 import routes from './routes'
-const cors = require('cors')
+import cors from 'cors'
 
 const port = process.env.PORT || 8081
 
