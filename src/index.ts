@@ -5,6 +5,7 @@ dotenv.config()
 import sequelize from './db/index'
 
 import routes from './routes'
+const cors = require('cors')
 
 const port = process.env.PORT || 8081
 
@@ -12,6 +13,7 @@ const app = express()
 
 // middlewares
 app.use(express.json())
+app.use(cors())
 app.use('/api', routes)
 
 const start = async () => {
