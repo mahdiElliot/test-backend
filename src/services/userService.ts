@@ -14,7 +14,7 @@ const save = async (user: user) => {
         })
         await u.save()
     } catch (e) {
-        throw new Errors.InternalError(e.message || errorMsgs.database_error())
+        throw new Errors.InternalError(e.errors[0].message || errorMsgs.database_error())
     }
 }
 
