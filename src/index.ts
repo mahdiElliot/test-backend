@@ -21,7 +21,7 @@ const start = async () => {
         await sequelize.sync()
 
         app.get('/', (req, res) => {
-
+            
         })
 
         app.listen(port, () => {

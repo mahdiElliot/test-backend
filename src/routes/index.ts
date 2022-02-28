@@ -7,6 +7,10 @@ import errorMsgs from '../utils/error-messages/error-english'
 
 const router = app.Router()
 
+router.get('/', (req, res) => {
+    res.status(statusCodes.SUCCESSFUL).send('hellloooooo')
+})
+
 router.post('/register', (req, res) => {
     const user: user = req.body
     if (!user.email || !user.mobile || !user.username) {
